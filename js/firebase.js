@@ -5,13 +5,15 @@ import {
   collection, 
   addDoc,
   getDocs,
-  onSnapshot
- } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
+  onSnapshot,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
 /*
 getFirestore: get conection of firestore
 collection: permite crear una tabla (colelcion de datos)
 addDoc: allow to save docs
-
+onSnapshot: Get the actual docs
 */
 
 
@@ -39,15 +41,12 @@ export const saveValues = (urlImg, title, description, price) => addDoc(collecti
 //C-rud get docs
 export const onGetValues = (callback) => onSnapshot(collection(db, "products"), callback);
 
-export {
-  onSnapshot,
-  collection,
-  db
-}
+export const deleteCard = id => deleteDoc(doc(db, "products", id));
 
 
-
-//C-rud getDocs from database
-export const getValues = () => 
-//a collection se le pasa la conexion de la base de datos y la collecion a la que se quiere acceder
-  getDocs(collection(db, `products`));
+//Get the actual values from the database
+// export {
+//   onSnapshot,
+//   collection,
+//   db
+// }

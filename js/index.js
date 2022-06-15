@@ -1,39 +1,46 @@
-import { saveValues, getValues, onGetValues, collection, db, onSnapshot} from "./firebase.js";
+import { saveValues, onGetValues, deleteCard} from "./firebase.js";
 
 const formUp = document.getElementById("formUp");
-// const cardsContainer = document.getElementById("cards-container");
-
 /*for cards*/
 const $cards = document.querySelector("#collection"),
     $template = document.getElementById("template-card").content,
     $fragment = document.createDocumentFragment();
 
 window.addEventListener(`DOMContentLoaded`,async () => {
-    //querySnapshot = los documentos que exisen en el momento
-    // const querySnapshot = await getValues()
-    // querySnapshot.array.forEach(doc => {
-    //     console.log(doc);
-    // });
-    onSnapshot(collection(db, `products`), querySnapshot => {
+
+    //onSnapshot(collection(db, `products`), querySnapshot => {
+    onGetValues((querySnapshot) => {
+        $cards.innerHTML = ""; //take just the cards that exist
         querySnapshot.forEach((doc) => {
-            console.log(doc.data())
             const values = doc.data();
             $template.querySelector("img").setAttribute("src", values.urlImg);
             $template.querySelector("img").setAttribute("alt", values.title);
             $template.querySelector(".card-title").textContent= values.title;
             $template.querySelector(".card-description").textContent= values.description;
             $template.querySelector(".card-price").textContent= values.price;
-
+            $template.querySelector(".btn-delete").setAttribute("id", doc.id);
+            /*node need to be cloned to appandChild*/
             let $clone = document.importNode($template,true);
+            /*fragment must be appended to clone*/
             $fragment.appendChild($clone);
         })
+        /**Card with values must be appended to fragment*/
         $cards.appendChild($fragment);
-    })
+
+        /**cruD */
+        const btnDelete = $cards.querySelectorAll(".btn-delete");
+        btnDelete.forEach(btn => {
+            btn.addEventListener("click", () => {
+                deleteCard(btn.id);
+            })
+        })
+        
+    });
     
 });
 
 
-
+/**Values are saved on database*/
 formUp.addEventListener("submit", (e) => {
     e.preventDefault(); //page don´t refresh
 
