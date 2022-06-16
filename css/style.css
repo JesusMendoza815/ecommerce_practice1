@@ -36,12 +36,12 @@ body {
 
 
 
-.btn-mod {
+.btn-update {
     background-color: #f5f5f5;
     color: black;
 }
 
-.btn-mod:hover {
+.btn-update:hover {
     background-color: #e5e4e4;
     border: 1px solid #e1e1e1;
 }

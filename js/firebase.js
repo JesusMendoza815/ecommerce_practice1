@@ -6,16 +6,19 @@ import {
   addDoc,
   getDocs,
   onSnapshot,
-  deleteDoc,
-  doc
+  deleteDoc, //
+  doc,
+  getDoc,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/9.8.3/firebase-firestore.js";
 /*
 getFirestore: get conection of firestore
 collection: permite crear una tabla (colelcion de datos)
 addDoc: allow to save docs
 onSnapshot: Get the actual docs
+deleteDoc: allow to delete docs
+doc: get jus a doc of the collection (define id)
 */
-
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -35,14 +38,21 @@ const app = initializeApp(firebaseConfig);
 //get firebase conection
 const db = getFirestore();
 
+//CRUD functions
 //C-rud save valuse on database
 export const saveValues = (urlImg, title, description, price) => addDoc(collection(db, `products`), {urlImg, title, description, price});
 
-//C-rud get docs
+//cRud get docs
 export const onGetValues = (callback) => onSnapshot(collection(db, "products"), callback);
 
+//cruD
 export const deleteCard = id => deleteDoc(doc(db, "products", id));
 
+//crUd
+export const getCardValues = id => getDoc(doc(db, "products", id));
+
+//crUd
+export const updateCardValues = (id, newFileds) => updateDoc(doc(db, "products", id), newFileds);
 
 //Get the actual values from the database
 // export {

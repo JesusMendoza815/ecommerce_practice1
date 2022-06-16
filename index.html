@@ -35,6 +35,7 @@
                 class="btn btn-mod"
                 data-bs-toggle="modal"
                 data-bs-target="#carrito"
+                id="add-product"
               >
               🛒
               </button>
@@ -70,8 +71,8 @@
               <p class="card-description"></p>
               <h6 class="card-price"></h6>
               <div>
-                <a href="#" class="btn btn-mod">Update</a>
-                <a href="#" class="btn btn-delete">Delete</a>
+                <a href="#" class="btn btn-update" data-bs-target="#carrito" data-bs-toggle="modal">Update</a>
+                <a type="button" class="btn btn-delete">Delete</a>
               </div>
             </div>
           </div>
@@ -82,54 +83,46 @@
 
     <!-- Modal -->
     <div
-            class="modal fade"
-            id="carrito"
-            tabindex="-1"
-            aria-labelledby="exampleModalLabel"
-            aria-hidden="true"
-          >
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                  <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-  
-                <form id="formUp">
-                  <div class="modal-body">
-                  <label for="formUrlImage" class="form-label">Image url</label>
-                  <input type="url" class="form-control" id="formUrlImage">
-  
-                  <label for="formTitle" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="formTitle">
-  
-                  <label for="formDescription"" class="form-label">Description</label>
-                  <input type="text" class="form-control" id="formDescription">
-  
-                  <label for="formPrice"" class="form-label">Price</label>
-                  <input type="number" class="form-control" id="formPrice">
-                </div>
-  
-                <button
-                  type="submit"
-                  class="btn btn-secondary"
-                  data-bs-dismiss="modal"
-                >
-                Close
-                </button>
-                <button type="submit" class="btn btn-primary">
-                  Save changes
-                </button>
-              </form>
-  
-              </div>
+      class="modal fade"
+      id="carrito"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          </div>
+
+          <form id="formUp">
+            <div class="modal-body">
+              <label for="formUrlImage" class="form-label">Image url</label>
+              <input type="url" class="form-control" id="formUrlImage">
+
+              <label for="formTitle" class="form-label">Title</label>
+              <input type="text" class="form-control" id="formTitle">
+
+              <label for="formDescription"" class="form-label">Description</label>
+              <input type="text" class="form-control" id="formDescription">
+
+              <label for="formPrice"" class="form-label">Price</label>
+              <input type="number" class="form-control" id="formPrice">
             </div>
-    </div>
+            <div class="modal-footer justify-content-center">
+              <!-- <button
+                type="submit"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal">Close
+              </button> -->
+              <button type="submit" class="btn btn-primary" id="btn-save-card">
+                Add product
+              </button>
+            </div>
+              
+            </form>
+          </div>
+        </div>
+  </div>
     <!-- /modal -->
 
     <script type="module" src="/js/index.js"></script>
