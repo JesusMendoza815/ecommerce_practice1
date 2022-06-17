@@ -39,7 +39,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 
 //CRUD functions
-//C-rud save valuse on database
+//Crud save valuse on database
 export const saveValues = (urlImg, title, description, price) => addDoc(collection(db, `products`), {urlImg, title, description, price});
 
 //cRud get docs

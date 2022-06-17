@@ -1,3 +1,6 @@
+/*NOT IN USE*/
+/*USING TEMPALTES AND NODES IN INDEX.JS*/
+
 const newProduct = (urlImg, title, description, price) => {
     let text = "Go somewhere"
     // CREATE ELEMENT

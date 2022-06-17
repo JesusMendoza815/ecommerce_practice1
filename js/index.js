@@ -1,6 +1,6 @@
 import { saveValues, onGetValues, deleteCard, getCardValues, updateCardValues} from "./firebase.js";
 
-const formUp = document.getElementById("formUp");
+const formUp = document.getElementById("formUp");//change formUp to $formUp
 /*for cards*/
 const $cards = document.querySelector("#collection"),
       $template = document.getElementById("template-card").content,
@@ -12,7 +12,7 @@ window.addEventListener(`DOMContentLoaded`,async () => {
 
     //onSnapshot(collection(db, `products`), querySnapshot => {
     onGetValues((querySnapshot) => {
-        $cards.innerHTML = ""; //take just the cards that exist
+        $cards.innerHTML = ""; //only get the existent cards
         querySnapshot.forEach((doc) => {
             const values = doc.data();
             $template.querySelector("img").setAttribute("src", values.urlImg);
