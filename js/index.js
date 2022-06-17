@@ -19,7 +19,7 @@ window.addEventListener(`DOMContentLoaded`,async () => {
             $template.querySelector("img").setAttribute("alt", values.title);
             $template.querySelector(".card-title").textContent= values.title;
             $template.querySelector(".card-description").textContent= values.description;
-            $template.querySelector(".card-price").textContent= values.price;
+            $template.querySelector(".card-price").textContent= `$${values.price}`;
             $template.querySelector(".btn-delete").setAttribute("id", doc.id);
             $template.querySelector(".btn-update").setAttribute("id", doc.id);
             /*node need to be cloned to appandChild*/
@@ -60,27 +60,29 @@ window.addEventListener(`DOMContentLoaded`,async () => {
 });
 
 /**Values are saved on database*/
-const body = document.getElementById("add-product");
-body.addEventListener("click", () => {
-    formUp.addEventListener("submit", (e) => {
-        e.preventDefault(); //page don´t refresh
-    
-        const urlImg = formUp[`formUrlImage`];
-        const title = formUp[`formTitle`];
-        const description = formUp[`formDescription`];
-        const price = formUp[`formPrice`];
-    
-        if (!editStatus) {
-            console.log("editingNO")
-            saveValues(urlImg.value, title.value, description.value, price.value);
-        } else {
-            console.log("editing")
-            updateCardValues(id ,{urlImg: urlImg.value, title: title.value, description: description.value, price: price.value});
-            editStatus = false;
-        }
-        
-        
-    })
-    formUp[`btn-save-card`].textContent = "Save Card";
+formUp.addEventListener("submit", (e) => {
+    e.preventDefault(); //page don´t refresh
+
+    const urlImg = formUp[`formUrlImage`];
+    const title = formUp[`formTitle`];
+    const description = formUp[`formDescription`];
+    const price = formUp[`formPrice`];
+
+    if (!editStatus) {
+        console.log("editingNO")
+        saveValues(urlImg.value, title.value, description.value, price.value);
+    } else {
+        console.log("editing")
+        updateCardValues(id ,{urlImg: urlImg.value, title: title.value, description: description.value, price: price.value});
+        editStatus = false;
+        formUp[`btn-save-card`].textContent = "Save Card";
+    }
     formUp.reset();
 })
+
+// const body = document.getElementById("add-product");
+// body.addEventListener("click", (e) => {
+//     e.preventDefault(); //page don´t refresh
+//     formUp[`btn-save-card`].textContent = "Save Card";
+//     formUp.reset();
+// })
